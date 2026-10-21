@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Importante 💖</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #ffe5ec; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
+        h1 { color: #ff477e; font-size: 2.5rem; text-align: center; }
+        .botoes { position: relative; width: 100%; max-width: 400px; height: 100px; display: flex; justify-content: center; align-items: center; }
+        button { padding: 15px 30px; font-size: 1.2rem; font-weight: bold; border: none; border-radius: 10px; cursor: pointer; position: absolute; }
+        #sim { background-color: #ff7096; color: white; transform: translateX(-70px); }
+        #nao { background-color: #fb6f92; color: white; transform: translateX(70px); }
+    </style>
+</head>
+<body>
+
+    <h1>Quer namorar comigo? 🥰</h1>
+
+    <div class="botoes">
+        <button id="sim" onclick="aceitou()">SIM</button>
+        <button id="nao" onmouseover="foge()" onclick="foge()">NÃO</button>
+    </div>
+
+    <script>
+        function foge() {
+            const botaoNao = document.getElementById("nao");
+            const larguraJanela = window.innerWidth - 120;
+            const alturaJanela = window.innerHeight - 60;
+            
+            botaoNao.style.left = Math.random() * larguraJanela + "px";
+            botaoNao.style.top = Math.random() * alturaJanela + "px";
+        }
+
+        function aceitou() {
+            // Avisa o Python que a pessoa aceitou!
+            fetch('/aceitou')
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.mensagem);
+                });
+        }
+    </script>
+</body>
+</html>
